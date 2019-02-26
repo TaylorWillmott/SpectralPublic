@@ -127,11 +127,12 @@ function ENT:alarmTrigger(asshole)
 		
 		local name = self:GetParent():getDoorData().title
 		
-		if not name then
-	        name = "Unnamed Door"
+		if name then
+	        DarkRP.notify(self:Getowning_ent(), 1, 5, "Your alarm at '"..name.."' has been triggered!")
+		else
+			DarkRP.notify(self:Getowning_ent(), 1, 5, "One of your door alarms has been triggered!")
 	    end
 		
-		DarkRP.notify(self:Getowning_ent(), 1, 5, "You alarm at "..name.." has been triggered!")
 	end
 end
 
