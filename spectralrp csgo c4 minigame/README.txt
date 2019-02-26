@@ -1,2 +1,3 @@
 This addon was developed by TheRandomnessGuy (https://github.com/TheRandomnessGuy).
 In order to work, the addon requires the SpectralRP base which can be found here: https://github.com/TheRandomnessGuy/SpectralPublic
+This addon also requires ULX, which can be found here: http://ulyssesmod.net/downloads.php
