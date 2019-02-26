@@ -161,6 +161,14 @@ hook.Add("lockpickStarted", "alarm_react_lockpicking", function(ply, ent)
 	end
 end)
 
+hook.Add("TFADoorShot", "alarm_react_tfa", function(ply, ent)
+    local alarm = ent.actAlarm
+	
+	if alarm and alarm:GetNWString("alarm_status") ~= "" then
+	    alarm:alarmTrigger(ply)
+	end
+end)
+
 hook.Add("playerSellDoor", "alarm_sell_detach", function(ply, ent)
     if ent.actAlarm then
 	    ent.actAlarm:alarmDetach()
