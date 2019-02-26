@@ -108,14 +108,24 @@ function ENT:alarmDetach()
 	self:alarmOff()
 end
 
-function ENT:alarmTrigger(asshole)
-    if asshole then
-	    if asshole == self:Getowning_ent() then return end
-		
-		local reason = 	"Attempting to Invade Private Property"
-		
-		if table.HasValue(self.alarmUpgrades, "upgrade_tower") and asshole:getDarkRPVar("wantedReason") ~= reason then
-	        asshole:wanted(nil, reason)
+function ENT:alarmTrigger(intruder)
+    if intruder then
+	    if intruder == self:Getowning_ent() then return end -- Prevents people setting off their own alarms.
+
+		if table.HasValue( self.alarmUpgrades, "upgrade_tower" ) and intruder:getDarkRPVar("wanted") ~= true then
+			local doorName = self:GetParent():getDoorData().title
+			
+			if doorName then
+				reason = "Attempting to invade private property ('"..doorName.."')."
+			else
+				reason = "Attempting to invade private property."
+			end
+			
+			if SpectralRP.base then
+				SpectralRP.wanted(intruder, "Door Alarm System", reason)
+			else
+				intruder:wanted(nil, reason)
+			end
 	    end
 	end
 	
@@ -133,11 +143,10 @@ function ENT:alarmTrigger(asshole)
 			DarkRP.notify(self:Getowning_ent(), 1, 5, "One of your door alarms has been triggered!")
 	    end
 		
-	end
-end
 
 		
 	end
+end
 
 hook.Add("PlayerDisconnected", "alarm_disconnect_explode", function(ply)
     for k, v in pairs(ents.FindByClass("door_alarm")) do
