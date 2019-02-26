@@ -44,6 +44,19 @@ local base = {
 		DarkRP.log(string.Replace(printMessage, "\n", " "), Color(0, 150, 255))
 	end,
 	
+	errorMSG = function(ply, comp)
+		if IsValid(ply) and ply:IsPlayer() then
+			if comp and (comp > 0) then
+				ply:ChatPrint("It seems an error occurred! Please take £"..comp.." as an apology and let the TheRandomnessGuy (Jim Pickens) know what happened so he can fix it!")
+				ply:AddMoney(comp)
+				print("SpectralRP Base - An error just occurred for "..ply:GetName().."! They were compensated £"..comp..".")
+			else
+				ply:ChatPrint("It seems an error occurred! Please let the TheRandomnessGuy (Jim Pickens) know what happened so he can fix it!")
+				print("SpectralRP Base - An error just occurred for "..ply:GetName().."!")
+			end
+		end
+	end,
+	
 };
 
 SpectralRP = base
