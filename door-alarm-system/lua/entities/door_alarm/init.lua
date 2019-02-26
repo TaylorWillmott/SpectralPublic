@@ -32,9 +32,9 @@ function ENT:StartTouch(ent)
 		
 		if math.abs(ent:WorldToLocalAngles(self:GetAngles()).y) > 90 then
 		    ang:RotateAroundAxis(ang:Up(), 180)
-			self:SetPos(pos +ang:Right() *40 +ang:Up() *1 +ang:Forward() *-1.5)
+			self:SetPos(pos +ang:Right() * 40 +ang:Up() * 1 +ang:Forward() * -1.5)
 		else
-		    self:SetPos(pos +ang:Right() *-40 +ang:Up() *1 +ang:Forward() *-1.5)
+		    self:SetPos(pos +ang:Right() * -40 +ang:Up() * 1 +ang:Forward() * -1.5)
 		end
 
 		self:SetAngles(ang)
