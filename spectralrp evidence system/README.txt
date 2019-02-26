@@ -1,1 +1,1 @@
-The this addon was developed by TheRandomnessGuy (https://github.com/TheRandomnessGuy).
+This addon was developed by TheRandomnessGuy (https://github.com/TheRandomnessGuy).
