@@ -1,0 +1,1 @@
+The SpectralRP base was developed by TheRandomnessGuy (https://github.com/TheRandomnessGuy).
