@@ -38,7 +38,7 @@ function ENT:Draw()
 		
 		--[HACKING]--
 		cam.Start3D2D(pos +ang:Up() *-5.8, ang2, 0.04) --tearing
-		    for i = 1, progress *30 do
+		    for i = 1, progress *25 do
 			    surface.SetDrawColor(255, 255, 255)
 	                surface.SetMaterial(Material("effects/security_noise2"))
 	            surface.DrawTexturedRect(math.random(-128, -11), math.random(-21, 40), math.random(1, 5), 1)
