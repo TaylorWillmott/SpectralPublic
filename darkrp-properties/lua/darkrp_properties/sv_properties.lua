@@ -1,9 +1,8 @@
-
 function Properties.Functions.OwnDoorByNum(ply, doorInd)
 	local team = ply:Team()
 	local trace = ply:GetEyeTrace()
 	
-	//Override the entity
+	--Override the entity
 	trace.Entity = ents.GetMapCreatedEntity(doorInd)
 	
 	if IsValid(trace.Entity) and trace.Entity:isKeysOwnable() then
@@ -73,7 +72,7 @@ function Properties.Functions.DisownDoorByNum(ply, doorInd)
 	local team = ply:Team()
 	local trace = ply:GetEyeTrace()
 	
-	//Override the entity
+	--Override the entity
 	trace.Entity = ents.GetMapCreatedEntity(doorInd)
 	
 	if IsValid(trace.Entity) and trace.Entity:isKeysOwnable() then
@@ -142,7 +141,7 @@ function Properties.Functions.DisownPropertyByNum(ply, propID)
 end
 
 function Properties.Functions.BuyProperty(ply, propID)
-	//Check all the time if the owners should be updated
+	--Check all the time if the owners should be updated
 	if Properties.PropertyOwners[propID] != nil then
 		if !IsValid(Properties.PropertyOwners[propID]) then
 			Properties.PropertyOwners[propID] = nil
@@ -151,8 +150,8 @@ function Properties.Functions.BuyProperty(ply, propID)
 	end
 	
 	if Properties.PropertyOwners[propID] == nil then
-		//Its available
-		//check their money
+		--Its available
+		--check their money
 		if( ply:canAfford( Properties.PropertyDoors[propID].price ) ) then
 			DarkRP.notify(ply, 0, 4, "You bought "..Properties.PropertyDoors[propID].name.." for $"..Properties.PropertyDoors[propID].price)
 			ply:addMoney(-Properties.PropertyDoors[propID].price)
@@ -161,16 +160,16 @@ function Properties.Functions.BuyProperty(ply, propID)
 			DarkRP.notify(ply, 0, 4, "You can't afford this property.")
 		end
 	elseif Properties.PropertyOwners[propID] == ply then
-		//They already own it
+		--They already own it
 		DarkRP.notify(ply, 0, 4, "You already own this.")
 	else
-		//Its already owned
+		--Its already owned
 		DarkRP.notify(ply, 0, 4, "This property belongs to: "..Properties.PropertyOwners[propID]:Nick())
 	end
 end
 
 function Properties.Functions.SellProperty(ply, propID)
-	//Check all the time if the owners should be updated
+	--Check all the time if the owners should be updated
 	if Properties.PropertyOwners[propID] != nil then
 		if !IsValid(Properties.PropertyOwners[propID]) then
 			Properties.PropertyOwners[propID] = nil
@@ -187,7 +186,7 @@ function Properties.Functions.SellProperty(ply, propID)
 	end
 end
 
-//Server to client stuff
+--Server to client stuff
 util.AddNetworkString( "propertySyncOwners" )
 function Properties.Functions.SyncOwners()
 	net.Start( "propertySyncOwners" )
@@ -219,13 +218,13 @@ function Properties.Functions.SyncED()
 	PrintTable(Properties.EandDIndex)
 end
 
-//Client to Server stuff
+--Client to Server stuff
 util.AddNetworkString( "propertyBuy" )
 util.AddNetworkString( "propertySell" )
 
 net.Receive( "propertyBuy", function( len, ply )
-	//Custom checks to see if they're allowed to buy the property
-	//TODO
+	--Custom checks to see if they're allowed to buy the property
+	--TODO
 	local propID = net.ReadInt( 8 )
 	if propID != nil then
 		if Properties.PropertyDoors[propID] != nil then
@@ -235,8 +234,8 @@ net.Receive( "propertyBuy", function( len, ply )
 end )
 
 net.Receive( "propertySell", function( len, ply )
-	//Custom checks to see if they're allowed to sell the property
-	//TODO
+	--Custom checks to see if they're allowed to sell the property
+	--TODO
 	local propID = net.ReadInt( 8 )
 	if propID != nil then
 		if Properties.PropertyDoors[propID] != nil then

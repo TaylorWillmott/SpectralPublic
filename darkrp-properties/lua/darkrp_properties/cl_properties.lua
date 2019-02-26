@@ -16,7 +16,7 @@ net.Receive( "propertySyncED", function( len )
 	PrintTable(Properties.EandDIndex)
 end )
 
-//The door hud text
+--The door hud text
 
 function Properties.Functions.drawOwnableInfo( ent )
 	local self = ent

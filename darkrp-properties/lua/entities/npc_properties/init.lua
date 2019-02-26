@@ -4,7 +4,9 @@ AddCSLuaFile( "shared.lua" )
 include( 'shared.lua' )
 
 function ENT:Initialize( )
-	self:SetModel( "models/odessa.mdl" )
+	if self:GetModel() == nil then
+		self:SetModel( "models/odessa.mdl" )
+	end
  	self:SetHullType( HULL_HUMAN )
 	self:SetUseType( SIMPLE_USE )
 	self:SetHullSizeNormal( )
@@ -21,7 +23,9 @@ end
 function ENT:OnTakeDamage( dmg ) 
 	return false
 end
+
 util.AddNetworkString( "propertiesNPCmenu" )
+
 function ENT:AcceptInput( name, activator, caller )
     if ( name == "Use" && IsValid( activator ) && activator:IsPlayer( ) ) then
 		net.Start( "propertiesNPCmenu" )
@@ -29,4 +33,3 @@ function ENT:AcceptInput( name, activator, caller )
 		net.Send( activator )
     end
 end
-

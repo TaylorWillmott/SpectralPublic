@@ -6,12 +6,12 @@ function ENT:Draw( )
     self.Entity:DrawModel( )
 end
 
-local function NPCMenu()
+net.Receive( "propertiesNPCmenu", function()
 	local npcID = net.ReadInt(8)
 	local curposdraw = 1
 	local curproperty = 1
 	local panel = vgui.Create("DFrame")
-	local curpropertyname = Properties.NPCSpawns[npcID]["name"].."'s Properties"
+	local curpropertyname = Properties.NPCSpawns[npcID]["name"]
 	surface.SetFont(Properties.PropertyManNameFont)
 	local textw, texth = surface.GetTextSize(curpropertyname)
 	panel:SetSize(ScrW(), ScrH())
@@ -50,9 +50,9 @@ local function NPCMenu()
 		surface.DrawRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, textw+30, 60)
 		surface.SetDrawColor(Properties.PropertyManNameOutline)
 		surface.DrawOutlinedRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, textw+30, 60)
-		//render.SetScissorRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, 450, ScrH()/2 - (ScrH() - 300)/ 2 - 80 + 60, true)
+		--render.SetScissorRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, 450, ScrH()/2 - (ScrH() - 300)/ 2 - 80 + 60, true)
 		draw.DrawText( curpropertyname, Properties.PropertyManNameFont, 65, ScrH()/2 - (ScrH() - 300)/ 2 - 65, Properties.PropertyManNameTextColor, TEXT_ALIGN_LEFT )
-		//render.SetScissorRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, 450, ScrH()/2 - (ScrH() - 300)/ 2 - 80 + 60, false)
+		--render.SetScissorRect(50, ScrH()/2 - (ScrH() - 300)/ 2 - 80, 450, ScrH()/2 - (ScrH() - 300)/ 2 - 80 + 60, false)
 	end
 	local button = vgui.Create("DButton", panel)
 	button:SetPos(ScrW() - 30,10)
@@ -213,7 +213,7 @@ local function NPCMenu()
 	local function checkRend(npcID, id)
 		if Properties.NPCSpawns[npcID]["whitelist"] != nil then
 			if table.HasValue( Properties.NPCSpawns[npcID]["whitelist"], id ) then
-	   	   	   	//Yes we're fine continue
+	   	   	   	--Yes we're fine continue
 	   	   	   	return true
 	   	   	else
 	   	   	   	return false
@@ -222,16 +222,16 @@ local function NPCMenu()
 	   	   	if table.HasValue( Properties.NPCSpawns[npcID]["blacklist"], id ) then
 	   	   	   	return false
 	   	   	else
-	   	   	   	//Yes we're fine continue
+	   	   	   	--Yes we're fine continue
 	   	   	   	return true
 	   	   	end
 	   	end
-		//Just incase, render it
+		--Just incase, render it
 		return true
 	end
 	for k,v in pairs(Properties.PropertyDoors) do
 		if checkRend(npcID, k) then
-			local panel = vgui.Create("DButton")//dpanellist:Add("DButton")
+			local panel = vgui.Create("DButton")--dpanellist:Add("DButton")
 			panel:SetText("")
 			panel.Paint = function(self, w, h)
 				surface.SetDrawColor(Properties.PropertyButtonBackground)
@@ -250,7 +250,6 @@ local function NPCMenu()
 			dpanellist:AddItem(panel)
 		end
 	end
-end
-net.Receive( "propertiesNPCmenu", NPCMenu)
+end)
 
-
+--net.Receive( "propertiesNPCmenu", NPCMenu)
