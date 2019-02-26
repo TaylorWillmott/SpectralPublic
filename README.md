@@ -26,11 +26,11 @@ This addon adds a functional present entity which, when interacted with, spawns 
 ## Altered Addons
 Below is a list of the addons currently in the repository which were modified by me, but originally written by someone else.
 
-### DarkRP Properties (originally by [Alig96](https://github.com/Alig96))
+### DarkRP Properties (originally by [Alig96](https://github.com/Alig96/drp_Properties))
 I found this addon in a non-working state and so made some changes to fix it up and add some new functionality. It essentially adds real-estate agents to buy properties (groups of doors) from instead of the usual method of just buying each door individually.
 It also gives previews of the properties based on camera angles you can set in the config. Also includes a newly updated version of the property tool (previously developed by ds2198 and Threebow) to make finding DoorIDs and other info required to configure the addon even easier.
 
-### Door Alarm System
+### Door Alarm System (originally by [n00bmobile](https://github.com/n00bmobile/door-alarm-system))
 This addon already worked pretty well but I ended up making a fair few changes to improve the polish of it. The main changes are:
 * Allowed upgrade boxes to have custom names rather than just using entity names (e.g. "Armor Upgrade" rather than "armor_upgrade").
 * Changed the radio tower upgrade (automatically makes the intruder wanted) to work with the SpectralRP base, allowing the issuer to appear as "Door Alarm System" rather than "disconnected player".
