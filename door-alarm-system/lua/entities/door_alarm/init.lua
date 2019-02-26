@@ -62,6 +62,33 @@ function ENT:OnRemove() --protection against admins removing attached door alarm
 	end
 end
 
+function ENT:OnTakeDamage(dmg)
+	local amount = dmg:GetDamage()
+	
+	if table.HasValue(self.alarmUpgrades, "upgrade_armor") then
+	    amount = amount *alarm_system.settings.health.armor
+	end
+	
+	self:SetHealth(self:Health() -amount)
+	
+	if self:Health() <= 0 then
+		local pos = self:GetPos()
+        local effect = EffectData()
+    
+		effect:SetOrigin(pos)
+        util.Effect("Explosion", effect)
+	
+		if self.alarmSiren then
+		    self.alarmSiren:Stop()
+		end
+	
+	    self:GetParent().actAlarm = nil
+		self:Remove()
+	elseif self:GetNWString("alarm_status") ~= "" then
+	    self:alarmTrigger(dmg:GetAttacker())
+	end
+end
+
 function ENT:alarmOff()
     if self.alarmSiren then
 		self.alarmSiren:Stop()
@@ -107,28 +134,8 @@ function ENT:alarmTrigger(asshole)
 	end
 end
 
-hook.Add("EntityTakeDamage", "alarm_react_damage", function(ent, dmg)
-    if ent:GetClass() == "door_alarm" then
-	    ent:SetHealth(ent:Health() -dmg:GetDamage())
 		
-		if ent:Health() <= 0 then
-		    local pos = ent:GetPos()
-            local effect = EffectData()
-            
-			effect:SetOrigin(pos)
-            util.Effect("Explosion", effect)
-			
-			if ent.alarmSiren then
-		     	ent.alarmSiren:Stop()
-			end
-			
-			ent:GetParent().actAlarm = nil
-			ent:Remove()
-		elseif ent:GetNWString("alarm_status") ~= "" then
-		    ent:alarmTrigger(dmg:GetAttacker())
-		end
 	end
-end)
 
 hook.Add("PlayerDisconnected", "alarm_disconnect_explode", function(ply)
     for k, v in pairs(ents.FindByClass("door_alarm")) do
