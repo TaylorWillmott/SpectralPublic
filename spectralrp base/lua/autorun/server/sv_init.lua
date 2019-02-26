@@ -57,6 +57,19 @@ local base = {
 		end
 	end,
 	
+	spawnRPMoney = function(amount, pos)
+		local money = ents.Create("spawned_money")
+		if IsValid(money) then
+			money:SetPos(pos)
+			money:Setamount(amount)
+			money:Spawn()
+		else
+			print("ERROR: SpectralRP Base - Failed to initialize 'spawned_money' entity.")
+			return false
+		end
+		return true
+	end,
+	
 };
 
 SpectralRP = base
