@@ -1,1 +1,2 @@
 The SpectralRP base was developed by TheRandomnessGuy (https://github.com/TheRandomnessGuy).
+The snowScript function requires Atmos, which can be found here: https://steamcommunity.com/sharedfiles/filedetails/?id=185609021
