@@ -70,6 +70,20 @@ local base = {
 		return true
 	end,
 	
+	snowScript = function()
+		if GetConVar("srp_constant_snow"):GetBool() then
+			print("snowScript: Hook Running\n")
+			if AtmosGlobal.GetStorming( AtmosGlobal ) then AtmosGlobal.StopStorm( AtmosGlobal ) end
+			AtmosGlobal.StartSnow( AtmosGlobal )
+		end
+	end
+	
 };
 
 SpectralRP = base
+
+-- ConVars --
+CreateConVar("srp_constant_snow", 0, FCVAR_NONE, "Enable/disable constant snow.")
+
+-- Hooks --
+hook.Add( "PlayerSpawn","snowCheck", SpectralRP.snowScript )
