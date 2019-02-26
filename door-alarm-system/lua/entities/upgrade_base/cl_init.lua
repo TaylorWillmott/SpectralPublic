@@ -9,7 +9,7 @@ function ENT:Draw()
 
 	    surface.SetFont("Trebuchet24")
 
-	    local txt = self:GetClass()
+	    local txt = self.boxName or self:GetClass()
 	    local w, h = surface.GetTextSize(txt)
 	
 	    cam.Start3D2D(pos +ang:Up() *4.1, ang, 0.2) 

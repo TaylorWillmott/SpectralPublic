@@ -5,3 +5,5 @@ ENT.Author = "n00bmobile"
 ENT.Category = "n00bmobile"
 ENT.Spawnable = true
 ENT.AdminSpawnable = true
+
+ENT.boxName = "Signal Tower"
