@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+	
+        <title>SpectralRP Public Assets</title>
+		
+		<style>
+		
+			html { width: 100%; height: 100%; }
+			
+			body { height:100%; width:100%; overflow: hidden; margin: 0; background-color: black; }
+			
+			.image_container { width: 100%; height: 100%; text-align: center; line-height: 300px; }
+			
+			.image_container img { vertical-align: middle; }
+			
+			.helper { display: inline-block; height: 100%; vertical-align: middle; }
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	
+		<noscript>
+			<div class="background" style="background-image: url('https://taylorwillmott.com/SpectralPublic/img/bg/1.jpg')"></div>
+		</noscript>
+	
+		<div id="bg" class="background"></div>
+		
+		<script>
+			var host = 'https://taylorwillmott.com/SpectralPublic/img/bg/'
+			var images=[
+						'1.jpg',
+						'2.jpg',
+						'3.jpg',
+					   ];
+			var bgImg = 'url(' + host + images[Math.floor(Math.random() * images.length)] + ')';
+			document.body.style.background = bgImg;
+			document.body.style.backgroundSize = 'cover';
+		</script>
+		
+		<div class="image_container">
+			<span class="helper"></span>
+			<a href="https://git.taylorwillmott.com/SpectralPublic"><img src="https://taylorwillmott.com/SpectralPublic/img/logo.png" style="max-width: 35%; max-height: 35%;"></a>
+		</div>
+		
+	</body>
+
+</html>
